@@ -9,10 +9,11 @@ on:
 jobs:
   
   test:
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ubuntu-latest
+    # runs-on: ${{matrix.os}}
+    # strategy:
+      # matrix:
+        # os: [ubuntu-latest, windows-latest, macOS-latest]
     
     steps:
     - uses: actions/checkout@v3
@@ -22,9 +23,9 @@ jobs:
       with:
         java-version: '17'
         distribution: 'corretto'
-        #cache: maven
-    - name: Testando aplicacao
-      run: mvn test
+        cache: maven
+    - name: Testando a aplicacao
+      run: ./mvnw test
         
 
 
@@ -39,7 +40,7 @@ jobs:
       with:
         java-version: '17'
         distribution: 'corretto'
-        #cache: maven
+        cache: maven
         
     - name: Build with Maven
       run: mvn -B package --file pom.xml
