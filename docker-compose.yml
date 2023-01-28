@@ -4,6 +4,7 @@ services:
   web-spring-boot-artifact:
     build: .
     #image: remayke/spring-web:1.0 # Usado caso já exista a imagem
+    #image: spring/dock
     container_name: appweb
     volumes:
       - meu-volume:/app
@@ -17,6 +18,8 @@ services:
     container_name: meu-mongo
     networks:
       - minha-rede
+    depends_on:
+      - web-spring-boot-artifact
 
 networks:
   minha-rede:

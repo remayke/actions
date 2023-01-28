@@ -1,0 +1,8 @@
+# Usado quando estamos em local e ja geramos o
+# build do spring para buildar a imagems
+FROM amazoncorretto:17
+WORKDIR /app
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} main.jar
+ENTRYPOINT ["java", "-jar", "main.jar"]
+EXPOSE 8080
