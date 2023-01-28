@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+
+  web-spring-boot-artifact:
+    build: .
+    #image: remayke/spring-web:1.0 # Usado caso já exista a imagem
+    container_name: appweb
+    volumes:
+      - meu-volume:/app
+    ports:
+      - 3000:8080
+    networks:
+      - minha-rede
+
+  mongodb:
+    image: mongo:4.4.6
+    container_name: meu-mongo
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge
+
+volumes:
+  meu-volume:
+    # Pode deixar vazio se deseja criar um novo volume 
+    # external: true # true=Usado se o volume ja existir

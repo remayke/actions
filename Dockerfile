@@ -1,6 +1,7 @@
 FROM amazoncorretto:17
-EXPOSE 8080
 WORKDIR /app
 COPY . .
+ENV MINHA_ENV_VAR=spring
 RUN ./mvnw clean
 ENTRYPOINT ./mvnw spring-boot:run
+EXPOSE 8080
