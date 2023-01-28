@@ -14,9 +14,18 @@ class NameApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
+	
 	@Test
-	void contextLoads() throws Exception {
+	void testPassando() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/"))
+		       .andExpect(MockMvcResultMatchers.status().isOk())
+		       .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("Hello world")));
+	}
+
+		
+	@Test
+	void testFalhando() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/paginaInexistetne"))
 		       .andExpect(MockMvcResultMatchers.status().isOk())
 		       .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("Hello world")));
 	}
