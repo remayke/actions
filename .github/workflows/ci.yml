@@ -2,9 +2,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "*" ]
 
 jobs:
   
@@ -24,8 +24,8 @@ jobs:
         java-version: '17'
         distribution: 'corretto'
         cache: maven
-    - name: Testando a aplicacao
-      run: ./mvnw test
+    - name: Testando e empacotando a aplicacao
+      run: ./mvnw clean package
         
 
 

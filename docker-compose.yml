@@ -12,14 +12,14 @@ services:
       - 3000:8080
     networks:
       - minha-rede
+    depends_on:
+      - mongodb
 
   mongodb:
     image: mongo:4.4.6
     container_name: meu-mongo
     networks:
       - minha-rede
-    depends_on:
-      - web-spring-boot-artifact
 
 networks:
   minha-rede:
