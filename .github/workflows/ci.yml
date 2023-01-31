@@ -41,9 +41,7 @@ jobs:
         java-version: '17'
         distribution: 'corretto'
         cache: maven
-        
-    #- name: Build with Maven
-    #  run: mvn -B package --file pom.xml
+    - name: Empacotando a aplicacao
+      run: ./mvn clean package
     - name: Build docker container
       run: docker-compose build
-      # run: docker-compose up --build
