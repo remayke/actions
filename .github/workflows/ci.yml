@@ -42,6 +42,6 @@ jobs:
         distribution: 'corretto'
         cache: maven
     - name: Empacotando a aplicacao
-      run: ./mvn clean package
+      run: ./mvnw clean package
     - name: Build docker container
       run: docker-compose build
