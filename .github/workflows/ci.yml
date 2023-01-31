@@ -24,8 +24,8 @@ jobs:
         java-version: '17'
         distribution: 'corretto'
         cache: maven
-    - name: Testando e empacotando a aplicacao
-      run: ./mvnw clean package
+    - name: Testando a aplicacao
+      run: ./mvnw clean test
         
 
 
