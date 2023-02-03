@@ -3,6 +3,7 @@ name: Spring-Docker CI/CD
 env:
   IMAGE_NAME: remayke/learning
   IMAGE_TAG: github
+  DOCKER_USERNAME: remayke
 
 on:
   push:
