@@ -73,7 +73,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASS }}
         script: export PATH=$PATH:/usr/bin/docker &&
-                docker login -u "${{env.DOCKER_USERNAME}}" -p "$DOCKER_PASS" &&
+                echo $DOCKER_PASS | docker login --username "${{env.DOCKER_USERNAME}}" --password-stdin
                 docker ps -aq | xargs --no-run-if-empty docker stop &&
                 docker ps -aq | xargs --no-run-if-empty docker rm &&
                 docker images -aq | xargs --no-run-if-empty docker rmi &&
