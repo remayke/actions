@@ -55,3 +55,17 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: remayke/learning:ultima
+        
+        
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+    - name: remove ssh command using pass
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASS }}
+        script: mkdir teste
+  
