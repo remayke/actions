@@ -67,5 +67,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASS }}
-        script: mkdir teste
-  
+        script: docker stop $(docker ps -aq) &>/dev/null || true | 
+                docker rm $(docker ps -aq) &>/dev/null || true |
+                docker rmi $(docker images -aq) &>/dev/null || true |
+                docker run -d -p 80:8080 $IMAGE_NAME:$IMAGE_TAG"
