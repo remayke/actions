@@ -1,5 +1,9 @@
 name: Spring-Docker CI/CD
 
+env:
+  IMAGE_NAME: remayke/learning
+  IMAGE_TAG: github
+
 on:
   push:
     branches: [ "*" ]
@@ -54,7 +58,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: remayke/learning:github
+        tags: $IMAGE_NAME:IMAGE_TAG
         
         
   deploy:
@@ -67,7 +71,9 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASS }}
-        script: docker stop $(docker ps -aq) &>/dev/null || true && 
-                docker rm $(docker ps -aq) &>/dev/null || true &&
-                docker rmi $(docker images -aq) &>/dev/null || true &&
-                docker run -d -p 80:8080 remayke/learning:github
+        script: export PATH=$PATH:/usr/bin/docker &&
+                docker login -u $DOCKER_USERNAME -p "$DOCKER_PASS" &&
+                docker ps -aq | xargs --no-run-if-empty docker stop &&
+                docker ps -aq | xargs --no-run-if-empty docker rm &&
+                docker images -aq | xargs --no-run-if-empty docker rmi &&
+                docker run -d -p 80:8080 $IMAGE_NAME:$IMAGE_TAG
